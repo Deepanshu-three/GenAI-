@@ -1,19 +1,10 @@
-import { Schema, model, models, Document, Model, Types } from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
-// Interface for the Course document
-interface ICourse extends Document {
-  title: string;
-  description: string;
-  instructor?: Types.ObjectId ;  // Correct typing for ObjectId
-  modules: Types.ObjectId[];   // Array of ObjectId references to Module documents
-  language: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
+
 
 
 // Mongoose schema definition
-const courseSchema = new Schema<ICourse>({
+const courseSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -44,5 +35,5 @@ const courseSchema = new Schema<ICourse>({
   },
 });
 
-const Course: Model<ICourse> = models.Course || model<ICourse>('Course', courseSchema);
+const Course= models.Course || model('Course', courseSchema);
 export default Course;

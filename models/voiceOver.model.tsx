@@ -1,13 +1,6 @@
-import { Schema, model, models, Document, Model } from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
-interface IVoiceover extends Document {
-  content: Schema.Types.ObjectId;
-  language: string;
-  voiceUrl: string;
-  createdAt: Date;
-}
-
-const voiceoverSchema = new Schema<IVoiceover>({
+const voiceoverSchema = new Schema({
   content: {
     type: Schema.Types.ObjectId,
     ref: 'Content',
@@ -27,5 +20,5 @@ const voiceoverSchema = new Schema<IVoiceover>({
   },
 });
 
-const Voiceover: Model<IVoiceover> = models.Voiceover || model<IVoiceover>('Voiceover', voiceoverSchema);
+const Voiceover = models.Voiceover || model('Voiceover', voiceoverSchema);
 export default Voiceover;

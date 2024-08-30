@@ -1,17 +1,6 @@
-import { Schema, model, models, Document, Model } from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
-interface IContent extends Document {
-  module: Schema.Types.ObjectId;
-  text: string;
-  translation: Schema.Types.ObjectId;
-  media: Schema.Types.ObjectId[];
-  voiceover: Schema.Types.ObjectId;
-  notes: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-const contentSchema = new Schema<IContent>({
+const contentSchema = new Schema({
   module: {
     type: Schema.Types.ObjectId,
     ref: 'Module',
@@ -45,5 +34,5 @@ const contentSchema = new Schema<IContent>({
   },
 });
 
-const Content: Model<IContent> = models.Content || model<IContent>('Content', contentSchema);
+const Content = models.Content || model('Content', contentSchema);
 export default Content;
