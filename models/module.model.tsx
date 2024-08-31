@@ -1,14 +1,6 @@
-import { Schema, model, models, Document, Model } from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
-interface IModule extends Document {
-  title: string;
-  course: Schema.Types.ObjectId;
-  content: Schema.Types.ObjectId;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-const moduleSchema = new Schema<IModule>({
+const moduleSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -31,5 +23,5 @@ const moduleSchema = new Schema<IModule>({
   },
 });
 
-const Module: Model<IModule> = models.Module || model<IModule>('Module', moduleSchema);
+const Module = models.Module || model('Module', moduleSchema);
 export default Module;

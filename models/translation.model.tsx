@@ -1,13 +1,8 @@
-import { Schema, model, models, Document, Model } from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
-interface ITranslation extends Document {
-  content: Schema.Types.ObjectId;
-  language: string;
-  translatedText: string;
-  createdAt: Date;
-}
 
-const translationSchema = new Schema<ITranslation>({
+
+const translationSchema = new Schema({
   content: {
     type: Schema.Types.ObjectId,
     ref: 'Content',
@@ -27,5 +22,5 @@ const translationSchema = new Schema<ITranslation>({
   },
 });
 
-const Translation: Model<ITranslation> = models.Translation || model<ITranslation>('Translation', translationSchema);
+const Translation = models.Translation || model('Translation', translationSchema);
 export default Translation;

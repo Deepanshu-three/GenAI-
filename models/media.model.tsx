@@ -1,14 +1,8 @@
-import { Schema, model, models, Document, Model } from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
-interface IMedia extends Document {
-  content: Schema.Types.ObjectId;
-  url: string;
-  type: 'image' | 'animation';
-  altText: string;
-  createdAt: Date;
-}
 
-const mediaSchema = new Schema<IMedia>({
+
+const mediaSchema = new Schema({
   content: {
     type: Schema.Types.ObjectId,
     ref: 'Content',
@@ -32,5 +26,5 @@ const mediaSchema = new Schema<IMedia>({
   },
 });
 
-const Media: Model<IMedia> = models.Media || model<IMedia>('Media', mediaSchema);
+const Media = models.Media || model('Media', mediaSchema);
 export default Media;
